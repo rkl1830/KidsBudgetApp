@@ -1,9 +1,39 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Kids' Budget App</title>
-</head>
-<body>
-    <h1>Kids' Budget App</h1>
-</body>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kid's Budget App</title>
+        <style>
+            body {background-color: rgb(241, 230, 199)}
+        </style>
+            
+
+        <script>
+            function displayTithing() {
+                let earned = parseFloat(document.getElementById("increase").value);
+                let tithed = parseFloat(document.getElementById("tithed").value);
+                let f = computeFutureValue(earned, tithed);
+                let amount = f.toFixed(2)
+                let message;
+                    if (f < 0) { message = "You're ahead by $" + (-1*amount).toFixed(2) + "."} 
+                    else if (f==0) { message = "Right on track! You don't owe anything!";}
+                    else {message = "You owe $" + amount + ".";}
+                document.getElementById('output').innerHTML = message;
+            }
+
+            function computeFutureValue(earned, tithed) {
+                let due = (earned/10) - tithed; 
+                return due;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Tithing Calculator</h1>
+        Input the total amount you've earned and the total amount you've tithed to see how far you are behind!<br>
+        <br>
+        Amount Earned:   $<input id="increase"><br><br>
+        Already Tithed:   $<input id="tithed"><br><br>
+        <button type="button" onclick="displayTithing()"> Calculate </button> <div id="output"></div> 
+    </body>
 </html>
